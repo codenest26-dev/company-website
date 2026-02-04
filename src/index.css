@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 60% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 60% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 60% 10%;
+
+    --primary: 251 75% 11%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 243 50% 95%;
+    --secondary-foreground: 243 60% 12%;
+
+    --muted: 243 30% 96%;
+    --muted-foreground: 243 20% 45%;
+
+    --accent: 66 94% 51%;
+    --accent-foreground: 243 60% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 243 30% 90%;
+    --input: 243 30% 90%;
+    --ring: 66 94% 51%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-accent: linear-gradient(135deg, hsl(66 94% 51%) 0%, hsl(66 94% 60%) 100%);
+    --gradient-dark: linear-gradient(135deg, #0d062b 0%, #0d062b 100%);
+    --gradient-hero: linear-gradient(180deg, #0d062b 0%, #0d062b 100%);
+    --shadow-glow: 0 0 60px hsla(66, 94%, 51%, 0.3);
+    --shadow-card: 0 4px 20px hsla(243, 70%, 10%, 0.08);
+    --shadow-card-hover: 0 12px 40px hsla(243, 70%, 10%, 0.15);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 243 60% 10%;
+    --sidebar-primary: 243 70% 10%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 66 94% 51%;
+    --sidebar-accent-foreground: 243 60% 10%;
+    --sidebar-border: 243 30% 90%;
+    --sidebar-ring: 66 94% 51%;
+
+    --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: ui-serif, Georgia, Cambria, Times, serif;
+    --font-mono: 'Space Mono', ui-monospace, monospace;
+    --spacing: 0.25rem;
+  }
+
+  .dark {
+    --background: 251 75% 11%;
+    --foreground: 0 0% 100%;
+
+    --card: 251 70% 13%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 251 70% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 251 75% 11%;
+
+    --secondary: 251 60% 16%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 251 60% 16%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 66 94% 51%;
+    --accent-foreground: 243 60% 10%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 251 60% 20%;
+    --input: 251 60% 20%;
+    --ring: 66 94% 51%;
+
+    --sidebar-background: 251 70% 12%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 66 94% 51%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 251 60% 16%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 251 60% 16%;
+    --sidebar-ring: 66 94% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card-shadow:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+}
