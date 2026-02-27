@@ -146,7 +146,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0d062b' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#0d062b', position: 'relative' }}>
       <Header />
       
       <div className="pt-24" style={{ position: 'relative' }}>
@@ -541,7 +541,7 @@ const Services: React.FC = () => {
                     +1 713-505-4464
                   </a>
                   <span className="hidden md:block text-white/30">|</span>
-                  <a href="mailto:info@codenesttech.com" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
+                  <a href="mailto:info@codenesttechllc.com" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
                     <Mail className="w-6 h-6" style={{ color: '#cfef09' }} />
                     Email Us
                   </a>

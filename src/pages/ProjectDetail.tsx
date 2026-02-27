@@ -62,7 +62,7 @@ const ProjectDetail: React.FC = () => {
   return (
     <div
       className="min-h-screen text-white"
-      style={{ backgroundColor: "#0d062b" }}
+      style={{ backgroundColor: "#0d062b", position: "relative" }}
     >
       <Header />
 

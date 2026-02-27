@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ProjectCard } from '@/components/sections/ProjectCard';
@@ -310,14 +311,19 @@ export const portfolioData = {
 };
 
 const Portfolio: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<'app' | 'web'>('app');
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Initialize category from URL params, default to 'app' if not specified
+  const initialCategory = (searchParams.get('category') === 'web' ? 'web' : 'app') as 'app' | 'web';
+  const [activeCategory, setActiveCategory] = useState<'app' | 'web'>(initialCategory);
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 4;
 
-  // Reset to page 1 when category changes
+  // Update URL params when category changes
   useEffect(() => {
+    setSearchParams({ category: activeCategory }, { replace: true });
     setCurrentPage(1);
-  }, [activeCategory]);
+  }, [activeCategory, setSearchParams]);
 
   const allProjects = activeCategory === 'app' 
     ? portfolioData.portfolio.custom_app_development 
@@ -332,7 +338,7 @@ const Portfolio: React.FC = () => {
     : allProjects;
 
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: '#0d062b' }}>
+    <div className="min-h-screen text-white" style={{ backgroundColor: '#0d062b', position: 'relative' }}>
       <Header />
       
       <main className="pt-32 pb-20" style={{ position: 'relative' }}>

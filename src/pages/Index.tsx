@@ -29,6 +29,7 @@ const Index = () => {
       animate="animate"
       exit="exit"
       variants={pageTransition}
+      style={{ position: 'relative' }}
     >
       <Header />
       <main style={{ position: 'relative' }}>

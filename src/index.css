@@ -78,8 +78,8 @@
     --popover: 251 70% 12%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 251 75% 11%;
+    --primary: 251 75% 11%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 251 60% 16%;
     --secondary-foreground: 0 0% 100%;
@@ -113,12 +113,45 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
+  html {
+    background-color: #0d062b !important;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  html {
-    scroll-behavior: smooth;
+  body {
+    @apply text-foreground font-sans antialiased;
+    background-color: #0d062b !important;
+    min-height: 100vh;
+  }
+
+  #root {
+    background-color: #0d062b !important;
+    min-height: 100vh;
+  }
+
+  /* Prevent white flash during route transitions */
+  body > * {
+    background-color: transparent;
+  }
+
+  /* Optimize rendering */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 

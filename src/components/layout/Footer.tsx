@@ -38,8 +38,8 @@ const footerLinks = [
 const contactInfo = [
   {
     icon: <Mail size={18} style={{ color: "#cfef09" }} />,
-    text: "contact@codenesttechllc.com",
-    href: "mailto:contact@codenesttechllc.com",
+    text: "info@codenesttechllc.com",
+    href: "mailto:info@codenesttechllc.com",
   },
   {
     icon: <Phone size={18} style={{ color: "#cfef09" }} />,
