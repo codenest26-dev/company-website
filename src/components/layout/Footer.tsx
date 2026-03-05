@@ -43,8 +43,8 @@ const contactInfo = [
   },
   {
     icon: <Phone size={18} style={{ color: "#cfef09" }} />,
-    text: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    text: "+1 (786) 219-6512",
+    href: "tel:+17862196512",
   },
   {
     icon: <MapPin size={18} style={{ color: "#cfef09" }} />,

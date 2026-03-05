@@ -133,7 +133,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="font-medium text-foreground">
-                      +1 713 505 4464
+                      +1 (786) 219-6512
                     </div>
                     <div className="text-sm text-muted-foreground">
                       Call us: Mon – Fri 9:00 – 19:00
@@ -258,7 +258,7 @@ export default function Contact() {
                           type="tel"
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="+1 (555) 123-4567"
+                          placeholder="+1 (786) 219-6512"
                           className="h-12"
                         />
                       </div>

@@ -536,9 +536,9 @@ const Services: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
                 >
-                  <a href="tel:+17135054464" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
+                  <a href="tel:+17862196512" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
                     <Phone className="w-6 h-6" style={{ color: '#cfef09' }} />
-                    +1 713-505-4464
+                    +1 (786) 219-6512
                   </a>
                   <span className="hidden md:block text-white/30">|</span>
                   <a href="mailto:info@codenesttechllc.com" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
