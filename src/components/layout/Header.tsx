@@ -19,7 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Code, Palette, Smartphone, Zap, X } from "lucide-react";
+import { Code, Palette, Smartphone, Zap, X, ShoppingCart, Megaphone } from "lucide-react";
 
 // Memoize service menu items to prevent recreation
 const servicesMenuItems = [
@@ -27,25 +27,25 @@ const servicesMenuItems = [
     title: "Web Development",
     description: "Custom websites and web applications",
     icon: <Code className="size-5 shrink-0" />,
-    url: "/services#web-development",
-  },
-  {
-    title: "UI/UX Design",
-    description: "Beautiful and intuitive user interfaces",
-    icon: <Palette className="size-5 shrink-0" />,
-    url: "/services#ui-ux-design",
-  },
-  {
-    title: "Mobile Apps",
-    description: "Native and cross-platform mobile solutions",
-    icon: <Smartphone className="size-5 shrink-0" />,
-    url: "/services#mobile-apps",
+    url: "/services/web-development",
   },
   {
     title: "Digital Marketing",
     description: "Grow your brand and reach your audience",
-    icon: <Zap className="size-5 shrink-0" />,
-    url: "/services#digital-marketing",
+    icon: <Megaphone className="size-5 shrink-0" />,
+    url: "/services/digital-marketing",
+  },
+  {
+    title: "E-Commerce",
+    description: "Powerful online stores that drive sales",
+    icon: <ShoppingCart className="size-5 shrink-0" />,
+    url: "/services/ecommerce",
+  },
+  {
+    title: "Branding & Creative",
+    description: "Memorable brand identities that resonate",
+    icon: <Palette className="size-5 shrink-0" />,
+    url: "/services/branding",
   },
 ];
 

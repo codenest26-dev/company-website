@@ -48,7 +48,7 @@ const Services: React.FC = () => {
         'Hosting',
         'Website audit',
       ],
-      link: '/contact',
+      link: '/services/web-development',
       gradient: 'from-blue-500/20 to-purple-500/20',
     },
     {
@@ -62,7 +62,7 @@ const Services: React.FC = () => {
         'Marketing management',
         'SEO',
       ],
-      link: '/contact',
+      link: '/services/digital-marketing',
       gradient: 'from-pink-500/20 to-orange-500/20',
     },
     {
@@ -76,7 +76,7 @@ const Services: React.FC = () => {
         'Content management',
         'Hosting',
       ],
-      link: '/contact',
+      link: '/services/ecommerce',
       gradient: 'from-green-500/20 to-emerald-500/20',
     },
     {
@@ -89,7 +89,7 @@ const Services: React.FC = () => {
         'Branding for social media',
         'Custom illustrations',
       ],
-      link: '/contact',
+      link: '/services/branding',
       gradient: 'from-purple-500/20 to-pink-500/20',
     },
   ];

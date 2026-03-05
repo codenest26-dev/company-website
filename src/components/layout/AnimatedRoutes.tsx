@@ -13,6 +13,12 @@ const Portfolio = lazy(() => import('@/pages/Portfolio'));
 const ProjectDetail = lazy(() => import('@/pages/ProjectDetail'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
+// Service detail pages
+const WebDevelopment = lazy(() => import('@/pages/services/WebDevelopment'));
+const DigitalMarketing = lazy(() => import('@/pages/services/DigitalMarketing'));
+const ECommerce = lazy(() => import('@/pages/services/ECommerce'));
+const BrandingCreative = lazy(() => import('@/pages/services/BrandingCreative'));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-[#0d062b] flex items-center justify-center">
@@ -54,6 +60,38 @@ export function AnimatedRoutes() {
               element={
                 <PageTransition>
                   <Services />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/services/web-development"
+              element={
+                <PageTransition>
+                  <WebDevelopment />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/services/digital-marketing"
+              element={
+                <PageTransition>
+                  <DigitalMarketing />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/services/ecommerce"
+              element={
+                <PageTransition>
+                  <ECommerce />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/services/branding"
+              element={
+                <PageTransition>
+                  <BrandingCreative />
                 </PageTransition>
               }
             />
