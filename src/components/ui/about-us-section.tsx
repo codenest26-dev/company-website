@@ -133,20 +133,20 @@ export default function AboutUsSection() {
     >
       {/* Decorative background elements */}
       <motion.div
-        style={{ y: y1, rotate: rotate1 }}
-        style={{background: 'rgba(207, 239, 9, 0.1)'}} className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl"
+        style={{ y: y1, rotate: rotate1, background: 'rgba(207, 239, 9, 0.1)' }}
+        className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl"
       />
       <motion.div
-        style={{ y: y2, rotate: rotate2 }}
-        style={{background: 'rgba(207, 239, 9, 0.1)'}} className="absolute bottom-20 right-10 w-80 h-80 rounded-full blur-3xl"
+        style={{ y: y2, rotate: rotate2, background: 'rgba(207, 239, 9, 0.1)' }}
+        className="absolute bottom-20 right-10 w-80 h-80 rounded-full blur-3xl"
       />
       <motion.div
-        style={{ y: y1 }}
-        style={{background: 'rgba(207, 239, 9, 0.05)'}} className="absolute top-1/2 left-1/4 w-40 h-40 rounded-full blur-2xl"
+        style={{ y: y1, background: 'rgba(207, 239, 9, 0.05)' }}
+        className="absolute top-1/2 left-1/4 w-40 h-40 rounded-full blur-2xl"
       />
       <motion.div
-        style={{ y: y2 }}
-        style={{background: 'rgba(207, 239, 9, 0.05)'}} className="absolute bottom-1/3 right-1/3 w-56 h-56 rounded-full blur-3xl"
+        style={{ y: y2, background: 'rgba(207, 239, 9, 0.05)' }}
+        className="absolute bottom-1/3 right-1/3 w-56 h-56 rounded-full blur-3xl"
       />
 
       <motion.div

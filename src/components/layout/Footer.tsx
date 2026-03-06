@@ -38,13 +38,13 @@ const footerLinks = [
 const contactInfo = [
   {
     icon: <Mail size={18} style={{ color: "#cfef09" }} />,
-    text: "contact@codenesttechllc.com",
-    href: "mailto:contact@codenesttechllc.com",
+    text: "info@codenesttechllc.com",
+    href: "mailto:info@codenesttechllc.com",
   },
   {
     icon: <Phone size={18} style={{ color: "#cfef09" }} />,
-    text: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    text: "+1 (786) 219-6512",
+    href: "tel:+17862196512",
   },
   {
     icon: <MapPin size={18} style={{ color: "#cfef09" }} />,

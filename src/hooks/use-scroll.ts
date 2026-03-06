@@ -4,19 +4,25 @@ import React from 'react';
 export function useScroll(threshold: number) {
   const [scrolled, setScrolled] = React.useState(false);
 
-  const onScroll = React.useCallback(() => {
-    setScrolled(window.scrollY > threshold);
-  }, [threshold]);
-
   React.useEffect(() => {
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [onScroll]);
+    let ticking = false;
 
-  // also check on first load
-  React.useEffect(() => {
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > threshold);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Check on mount
     onScroll();
-  }, [onScroll]);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [threshold]);
 
   return scrolled;
 }

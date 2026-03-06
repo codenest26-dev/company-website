@@ -5,6 +5,28 @@
     <link rel="icon" type="image/svg+xml" href="/placeholder.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CodeNest Technologies LLC | Web Design, Branding & Digital Marketing</title>
+    <style>
+      /* Prevent white flash on load and transitions */
+      html,
+      body,
+      #root {
+        background-color: #0d062b !important;
+        margin: 0;
+        padding: 0;
+      }
+      
+      /* Ensure midnight color during loading */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0d062b;
+        z-index: -1;
+      }
+    </style>
     <meta name="description" content="CodeNest Technologies builds digital experiences through expert web design, development, branding, and digital marketing services. Transform your digital presence today." />
     <meta name="author" content="CodeNest Technologies LLC" />
 

@@ -19,46 +19,64 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Code, Palette, Smartphone, Zap, X } from "lucide-react";
+import { Code, Palette, Smartphone, Zap, X, ShoppingCart, Megaphone } from "lucide-react";
+
+// Memoize service menu items to prevent recreation
+const servicesMenuItems = [
+  {
+    title: "Web Development",
+    description: "Custom websites and web applications",
+    icon: <Code className="size-5 shrink-0" />,
+    url: "/services/web-development",
+  },
+  {
+    title: "Digital Marketing",
+    description: "Grow your brand and reach your audience",
+    icon: <Megaphone className="size-5 shrink-0" />,
+    url: "/services/digital-marketing",
+  },
+  {
+    title: "E-Commerce",
+    description: "Powerful online stores that drive sales",
+    icon: <ShoppingCart className="size-5 shrink-0" />,
+    url: "/services/ecommerce",
+  },
+  {
+    title: "Branding & Creative",
+    description: "Memorable brand identities that resonate",
+    icon: <Palette className="size-5 shrink-0" />,
+    url: "/services/branding",
+  },
+];
+
+const links = [{ label: "About", href: "/about" }];
+
+const linksAfterServices = [
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Portfolio", href: "/portfolio" },
+];
 
 export function Header() {
   const [open, setOpen] = React.useState(false);
   const scrolled = useScroll(10);
   const location = useLocation();
 
-  const links = [{ label: "About", href: "/about" }];
-
-  const linksAfterServices = [
-    { label: "Testimonials", href: "/#testimonials" },
-    { label: "Portfolio", href: "/portfolio" },
-  ];
-
-  const servicesMenuItems = [
-    {
-      title: "Web Development",
-      description: "Custom websites and web applications",
-      icon: <Code className="size-5 shrink-0" />,
-      url: "/services#web-development",
-    },
-    {
-      title: "UI/UX Design",
-      description: "Beautiful and intuitive user interfaces",
-      icon: <Palette className="size-5 shrink-0" />,
-      url: "/services#ui-ux-design",
-    },
-    {
-      title: "Mobile Apps",
-      description: "Native and cross-platform mobile solutions",
-      icon: <Smartphone className="size-5 shrink-0" />,
-      url: "/services#mobile-apps",
-    },
-    {
-      title: "Digital Marketing",
-      description: "Grow your brand and reach your audience",
-      icon: <Zap className="size-5 shrink-0" />,
-      url: "/services#digital-marketing",
-    },
-  ];
+  // Handle hash navigation for testimonials and other sections
+  React.useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      // Wait for navigation and DOM to be ready
+      const timeoutId = setTimeout(() => {
+        const sectionId = hash.substring(1);
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      
+      return () => clearTimeout(timeoutId);
+    }
+  }, [location.hash, location.pathname]);
 
   React.useEffect(() => {
     if (open) {
@@ -74,18 +92,20 @@ export function Header() {
 
   React.useEffect(() => {
     setOpen(false);
-  }, [location]);
+  }, [location.pathname]);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = React.useCallback((href: string) => {
     setOpen(false);
     if (href.startsWith("/#")) {
       const sectionId = href.substring(2);
       if (location.pathname === "/") {
-        const element = document.getElementById(sectionId);
-        element?.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          element?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
       }
     }
-  };
+  }, [location.pathname]);
 
   return (
     <header
@@ -114,6 +134,8 @@ export function Header() {
               "transition-all duration-500 object-contain",
               scrolled ? "h-32" : "h-40",
             )}
+            loading="eager"
+            decoding="async"
           />
         </Link>
 
@@ -304,176 +326,168 @@ export function Header() {
           size="icon"
           onClick={() => setOpen(!open)}
           className="md:hidden text-primary-foreground hover:bg-primary-foreground/10"
+          aria-label="Toggle menu"
         >
           <MenuToggleIcon open={open} className="size-5" />
         </Button>
       </div>
 
-      <div
-        className={cn(
-          "fixed inset-x-0 overflow-hidden bg-primary/95 backdrop-blur-2xl transition-all duration-500 ease-in-out md:hidden z-[60]",
-          open ? "top-0 h-[100dvh] opacity-100" : "top-[-100%] h-0 opacity-0",
-        )}
-      >
+      {/* Mobile Menu - Only render when needed */}
+      {open && (
         <div
-          className={cn(
-            "container mx-auto flex h-full flex-col justify-between gap-8 px-6 py-8 transition-opacity duration-500",
-            open ? "opacity-100" : "opacity-0",
-          )}
+          className="fixed inset-0 bg-primary/95 backdrop-blur-2xl md:hidden z-[60] overflow-y-auto"
+          style={{ willChange: 'transform, opacity' }}
         >
-          {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between">
-            <Link
-              to="/"
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-2"
-            >
-              <img
-                src="/Codenest Logo.png"
-                alt="CodeNest Logo"
-                className="h-24 object-contain"
-              />
-            </Link>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setOpen(false)}
-              className="text-white hover:bg-white/10 rounded-full"
-            >
-              <X className="size-8" />
-            </Button>
-          </div>
-
-          {/* Mobile Links */}
-          <div className="flex flex-col gap-6 pt-6">
-            {links.map((link, idx) => (
+          <div className="container mx-auto flex h-full flex-col justify-between gap-8 px-6 py-8 animate-in fade-in duration-300">
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between">
               <Link
-                key={link.label}
-                to={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="text-4xl font-display font-bold text-white hover:text-accent transition-all duration-300 transform hover:translate-x-2"
-                style={{ transitionDelay: `${idx * 50}ms` }}
+                to="/"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2"
               >
-                {link.label}
+                <img
+                  src="/Codenest Logo.png"
+                  alt="CodeNest Logo"
+                  className="h-24 object-contain"
+                  loading="eager"
+                />
               </Link>
-            ))}
-
-            {/* Services Accordion for Mobile */}
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem
-                value="services"
-                className="border-b border-white/10"
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setOpen(false)}
+                className="text-white hover:bg-white/10 rounded-full"
+                aria-label="Close menu"
               >
-                <AccordionTrigger className="py-4 font-display text-4xl font-bold text-white hover:text-accent hover:no-underline transition-all duration-300">
-                  Services
-                </AccordionTrigger>
-                <AccordionContent className="mt-4 pb-4">
-                  <div className="flex flex-col gap-4 pl-4">
-                    {servicesMenuItems.map((subItem) => (
-                      <Link
-                        key={subItem.title}
-                        to={subItem.url}
-                        onClick={() => setOpen(false)}
-                        className="flex items-center gap-4 group/mobile-service"
-                      >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-accent group-hover/mobile-service:bg-accent group-hover/mobile-service:text-primary transition-all duration-300">
-                          {subItem.icon}
-                        </div>
-                        <div>
-                          <div className="text-lg font-semibold text-white group-hover/mobile-service:text-accent transition-colors">
-                            {subItem.title}
-                          </div>
-                          <p className="text-sm text-white/50">
-                            {subItem.description}
-                          </p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+                <X className="size-8" />
+              </Button>
+            </div>
 
-            {linksAfterServices.map((link, idx) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="text-4xl font-display font-bold text-white hover:text-accent transition-all duration-300 transform hover:translate-x-2"
-                style={{
-                  transitionDelay: `${(idx + links.length + 1) * 50}ms`,
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
-
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="text-4xl font-display font-bold text-white hover:text-accent transition-all duration-300 transform hover:translate-x-2"
-              style={{
-                transitionDelay: `${(links.length + linksAfterServices.length + 1) * 50}ms`,
-              }}
-            >
-              Contact
-            </Link>
-          </div>
-
-          {/* Mobile Footer Area */}
-          <div className="flex flex-col gap-8 pb-12 mt-auto">
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-2">
-                <span className="text-xs uppercase tracking-widest text-white/40 font-semibold">
-                  Email Us
-                </span>
-                <a
-                  href="mailto:hello@codenest.com"
-                  className="text-white hover:text-accent transition-colors underline underline-offset-4"
+            {/* Mobile Links */}
+            <div className="flex flex-col gap-6 pt-6">
+              {links.map((link, idx) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className="text-4xl font-display font-bold text-white hover:text-accent transition-all duration-300 transform hover:translate-x-2"
                 >
-                  hello@codenest.com
-                </a>
-              </div>
-              <div className="flex flex-col gap-2">
-                <span className="text-xs uppercase tracking-widest text-white/40 font-semibold">
-                  Follow
-                </span>
-                <div className="flex gap-4">
+                  {link.label}
+                </Link>
+              ))}
+
+              {/* Services Accordion for Mobile */}
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem
+                  value="services"
+                  className="border-b border-white/10"
+                >
+                  <AccordionTrigger className="py-4 font-display text-4xl font-bold text-white hover:text-accent hover:no-underline transition-all duration-300">
+                    Services
+                  </AccordionTrigger>
+                  <AccordionContent className="mt-4 pb-4">
+                    <div className="flex flex-col gap-4 pl-4">
+                      {servicesMenuItems.map((subItem) => (
+                        <Link
+                          key={subItem.title}
+                          to={subItem.url}
+                          onClick={() => setOpen(false)}
+                          className="flex items-center gap-4 group/mobile-service"
+                        >
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-accent group-hover/mobile-service:bg-accent group-hover/mobile-service:text-primary transition-all duration-300">
+                            {subItem.icon}
+                          </div>
+                          <div>
+                            <div className="text-lg font-semibold text-white group-hover/mobile-service:text-accent transition-colors">
+                              {subItem.title}
+                            </div>
+                            <p className="text-sm text-white/50">
+                              {subItem.description}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+
+              {linksAfterServices.map((link, idx) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className="text-4xl font-display font-bold text-white hover:text-accent transition-all duration-300 transform hover:translate-x-2"
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
+                className="text-4xl font-display font-bold text-white hover:text-accent transition-all duration-300 transform hover:translate-x-2"
+              >
+                Contact
+              </Link>
+            </div>
+
+            {/* Mobile Footer Area */}
+            <div className="flex flex-col gap-8 pb-12 mt-auto">
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs uppercase tracking-widest text-white/40 font-semibold">
+                    Email Us
+                  </span>
                   <a
-                    href="#"
-                    className="text-white hover:text-accent transition-colors"
+                    href="mailto:info@codenesttechllc.com"
+                    className="text-white hover:text-accent transition-colors underline underline-offset-4"
                   >
-                    LN
-                  </a>
-                  <a
-                    href="#"
-                    className="text-white hover:text-accent transition-colors"
-                  >
-                    IG
-                  </a>
-                  <a
-                    href="#"
-                    className="text-white hover:text-accent transition-colors"
-                  >
-                    TW
+                    info@codenesttechllc.com
                   </a>
                 </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs uppercase tracking-widest text-white/40 font-semibold">
+                    Follow
+                  </span>
+                  <div className="flex gap-4">
+                    <a
+                      href="#"
+                      className="text-white hover:text-accent transition-colors"
+                    >
+                      LN
+                    </a>
+                    <a
+                      href="#"
+                      className="text-white hover:text-accent transition-colors"
+                    >
+                      IG
+                    </a>
+                    <a
+                      href="#"
+                      className="text-white hover:text-accent transition-colors"
+                    >
+                      TW
+                    </a>
+                  </div>
+                </div>
               </div>
+              <Button
+                asChild
+                variant="accent"
+                size="xl"
+                className="w-full h-16 text-lg font-bold shadow-[0_0_30px_rgba(var(--accent),0.3)]"
+              >
+                <Link to="/contact" onClick={() => setOpen(false)}>
+                  Work With Us
+                </Link>
+              </Button>
             </div>
-            <Button
-              asChild
-              variant="accent"
-              size="xl"
-              className="w-full h-16 text-lg font-bold shadow-[0_0_30px_rgba(var(--accent),0.3)]"
-            >
-              <Link to="/contact" onClick={() => setOpen(false)}>
-                Work With Us
-              </Link>
-            </Button>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }

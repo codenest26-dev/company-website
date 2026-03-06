@@ -48,7 +48,7 @@ const Services: React.FC = () => {
         'Hosting',
         'Website audit',
       ],
-      link: '/contact',
+      link: '/services/web-development',
       gradient: 'from-blue-500/20 to-purple-500/20',
     },
     {
@@ -62,7 +62,7 @@ const Services: React.FC = () => {
         'Marketing management',
         'SEO',
       ],
-      link: '/contact',
+      link: '/services/digital-marketing',
       gradient: 'from-pink-500/20 to-orange-500/20',
     },
     {
@@ -76,7 +76,7 @@ const Services: React.FC = () => {
         'Content management',
         'Hosting',
       ],
-      link: '/contact',
+      link: '/services/ecommerce',
       gradient: 'from-green-500/20 to-emerald-500/20',
     },
     {
@@ -89,7 +89,7 @@ const Services: React.FC = () => {
         'Branding for social media',
         'Custom illustrations',
       ],
-      link: '/contact',
+      link: '/services/branding',
       gradient: 'from-purple-500/20 to-pink-500/20',
     },
   ];
@@ -146,7 +146,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0d062b' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#0d062b', position: 'relative' }}>
       <Header />
       
       <div className="pt-24" style={{ position: 'relative' }}>
@@ -536,12 +536,12 @@ const Services: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
                 >
-                  <a href="tel:+17135054464" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
+                  <a href="tel:+17862196512" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
                     <Phone className="w-6 h-6" style={{ color: '#cfef09' }} />
-                    +1 713-505-4464
+                    +1 (786) 219-6512
                   </a>
                   <span className="hidden md:block text-white/30">|</span>
-                  <a href="mailto:info@codenesttech.com" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
+                  <a href="mailto:info@codenesttechllc.com" className="flex items-center gap-3 text-xl text-white hover:text-[#cfef09] transition-colors">
                     <Mail className="w-6 h-6" style={{ color: '#cfef09' }} />
                     Email Us
                   </a>
