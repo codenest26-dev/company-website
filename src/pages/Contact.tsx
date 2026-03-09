@@ -147,7 +147,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="font-medium text-foreground">
-                      Houston, Texas
+                      Pearland, Texas
                     </div>
                     <div className="text-sm text-muted-foreground">
                       3812 Houston Lake Dr, Pearland, TX, United States

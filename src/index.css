@@ -142,17 +142,23 @@
     height: auto;
   }
 
-  /* Reduce motion for users who prefer it */
+  /* Reduced motion preference - disabled to allow framer-motion animations */
+  /* Uncomment below if you want to respect user's reduced-motion preference */
+  /*
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    * {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
   }
+  */
+}
+
+@keyframes marquee-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
 }
 
 @layer components {

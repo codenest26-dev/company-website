@@ -325,6 +325,11 @@ const Portfolio: React.FC = () => {
     setCurrentPage(1);
   }, [activeCategory, setSearchParams]);
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
   const allProjects = activeCategory === 'app' 
     ? portfolioData.portfolio.custom_app_development 
     : portfolioData.portfolio.custom_web_development;
