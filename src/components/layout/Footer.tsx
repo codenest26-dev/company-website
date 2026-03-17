@@ -6,10 +6,7 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Instagram,
-  Twitter,
   Linkedin,
-  Globe,
 } from "lucide-react";
 import {
   FooterBackgroundGradient,
@@ -53,11 +50,8 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: <Facebook size={20} />, label: "Facebook", href: "#" },
-  { icon: <Instagram size={20} />, label: "Instagram", href: "#" },
-  { icon: <Twitter size={20} />, label: "Twitter", href: "#" },
-  { icon: <Linkedin size={20} />, label: "LinkedIn", href: "#" },
-  { icon: <Globe size={20} />, label: "Website", href: "#" },
+  { icon: <Facebook size={20} />, label: "Facebook", href: "https://www.facebook.com/codenesttechnologies" },
+  { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/company/codenest-technologiestx/" },
 ];
 
 export function Footer() {
@@ -151,6 +145,8 @@ export function Footer() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/40 transition-all hover:bg-[#cfef09] hover:text-black hover:border-transparent scale-110"
                 >

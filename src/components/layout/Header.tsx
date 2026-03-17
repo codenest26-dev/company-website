@@ -1,3 +1,5 @@
+
+
 "use client";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -65,14 +67,21 @@ export function Header() {
   React.useEffect(() => {
     const hash = location.hash;
     if (hash) {
-      // Wait for navigation and DOM to be ready
+      // Wait for navigation, animations, and DOM to be ready
       const timeoutId = setTimeout(() => {
         const sectionId = hash.substring(1);
         const element = document.getElementById(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+          // Get element position and subtract header height (120px for safety)
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - 120;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
         }
-      }, 100);
+      }, 500); // Increased timeout to allow for page animations
       
       return () => clearTimeout(timeoutId);
     }
@@ -99,9 +108,18 @@ export function Header() {
     if (href.startsWith("/#")) {
       const sectionId = href.substring(2);
       if (location.pathname === "/") {
+        // Already on homepage, just scroll
         setTimeout(() => {
           const element = document.getElementById(sectionId);
-          element?.scrollIntoView({ behavior: "smooth" });
+          if (element) {
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - 120;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+          }
         }, 100);
       }
     }

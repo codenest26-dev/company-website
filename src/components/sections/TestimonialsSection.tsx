@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from "framer-motion";
 
 interface Testimonial {
   text: string;
@@ -63,11 +62,47 @@ const testimonials: Testimonial[] = [
     name: "Hassan Ali",
     role: "E-commerce Manager",
   },
+  {
+    text: "The app development process was flawless. Their attention to detail and commitment to quality truly set them apart.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Ayesha Rahman",
+    role: "Product Owner",
+  },
+  {
+    text: "Outstanding digital marketing services that helped us reach our target audience effectively and grow our brand presence.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Kamran Sheikh",
+    role: "Brand Manager",
+  },
+  {
+    text: "Their SEO expertise brought our website to the top of search results. We've seen a remarkable increase in organic traffic.",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Nadia Khan",
+    role: "Digital Strategist",
+  },
+  {
+    text: "The UI/UX design they created is both beautiful and functional. Our users love the intuitive interface.",
+    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Raza Ahmed",
+    role: "UX Lead",
+  },
+  {
+    text: "Professional service from start to finish. They understood our vision and delivered beyond our expectations.",
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Sofia Malik",
+    role: "Founder & CEO",
+  },
+  {
+    text: "Great communication, timely delivery, and exceptional results. Would highly recommend CodeNest to anyone.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Imran Ali",
+    role: "Technology Director",
+  },
 ];
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+const firstColumn = testimonials.slice(0, 5);
+const secondColumn = testimonials.slice(5, 10);
+const thirdColumn = testimonials.slice(10, 15);
 
 const TestimonialsColumn = (props: {
   className?: string;
@@ -75,18 +110,15 @@ const TestimonialsColumn = (props: {
   duration?: number;
 }) => {
   return (
-    <div className={props.className}>
-      <motion.div
-        animate={{ translateY: "-50%" }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
+    <div className={props.className} style={{ overflow: 'hidden' }}>
+      <div
+        style={{
+          animation: `marquee-up ${props.duration || 10}s linear infinite`,
+          willChange: 'transform',
         }}
         className="flex flex-col gap-6 pb-6"
       >
-        {[...new Array(2).fill(0).map((_, index) => (
+        {[...new Array(2).fill(0)].map((_, index) => (
           <React.Fragment key={index}>
             {props.testimonials.map(({ text, image, name, role }, i) => (
               <div
@@ -116,15 +148,15 @@ const TestimonialsColumn = (props: {
               </div>
             ))}
           </React.Fragment>
-        ))]}
-      </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
 
 export const TestimonialsSection = () => {
   return (
-    <section id="testimonials" className="py-16 md:py-24 bg-primary" style={{ position: 'relative' }}>
+    <section id="testimonials" className="py-16 md:py-24 bg-primary" style={{ position: 'relative', scrollMarginTop: '120px' }}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium mb-4">

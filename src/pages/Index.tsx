@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import AboutUsSection from "@/components/ui/about-us-section";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { FAQSection } from "@/components/sections/FAQSection";
 import { CTASection } from "@/components/sections/CTASection";
 
 const pageTransition = {
@@ -38,8 +39,9 @@ const Index = () => {
         <motion.div {...sectionTransition} transition={{ duration: 0.6, delay: 0.1 }}>
           <ServicesSection />
         </motion.div>
+        <TestimonialsSection />
         <motion.div {...sectionTransition} transition={{ duration: 0.6, delay: 0.2 }}>
-          <TestimonialsSection />
+          <FAQSection />
         </motion.div>
         <motion.div {...sectionTransition} transition={{ duration: 0.6, delay: 0.3 }}>
           <CTASection />
