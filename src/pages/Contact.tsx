@@ -93,9 +93,16 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-medium mb-6">
+            <a 
+              href="#contact-form"
+              className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-medium mb-6 hover:bg-accent/30 transition-colors cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+            >
               Get In Touch
-            </span>
+            </a>
             <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6">
               Book a <span className="gradient-text">Consultation</span>
             </h1>
@@ -108,7 +115,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-24">
+      <section id="contact-form" className="py-24">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Info */}
@@ -189,7 +196,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="https://www.facebook.com/share/1B386b3tHE/?mibextid=wwXIfr"
+                  href="https://www.facebook.com/codenesttechnologies"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 hover:opacity-80 transition-opacity"

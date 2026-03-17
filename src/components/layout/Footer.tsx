@@ -50,7 +50,7 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: <Facebook size={20} />, label: "Facebook", href: "https://www.facebook.com/share/1B386b3tHE/?mibextid=wwXIfr" },
+  { icon: <Facebook size={20} />, label: "Facebook", href: "https://www.facebook.com/codenesttechnologies" },
   { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/company/codenest-technologiestx/" },
 ];
 
